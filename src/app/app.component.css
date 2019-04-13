@@ -1,0 +1,7 @@
+app-root {
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    overflow: hidden;
+    width: 100%;
+}
