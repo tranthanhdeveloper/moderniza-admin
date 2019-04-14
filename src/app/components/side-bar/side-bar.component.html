@@ -8,12 +8,17 @@
     <div class="profile-bg"></div>
     <ul class="list-unstyled components">
         <li *ngFor="let item of menuItems"  routerLinkActive="active">
-            <a [routerLink]="[item.path]"  data-toggle="collapse" aria-expanded="false">
+            <a *ngIf="item.children === null" [routerLink]="['item.path']">
                 <i class="{{item.icon}}"></i>
                 {{item.title}}
-                <i [hidden]="item.children === null" class="fas fa-angle-down fa-pull-right"></i>
             </a>
-            <ul [hidden]="item.children === null" class="collapse list-unstyled" [id]="[item.id]">
+
+            <a *ngIf="item.children !== null" [href]="[item.path]"  data-toggle="collapse" aria-expanded="false">
+                    <i class="{{item.icon}}"></i>
+                    {{item.title}}
+                    <i [hidden]="item.children === null" class="fas fa-angle-down fa-pull-right"></i>
+                </a>
+            <ul *ngIf="item.children !== null" [hidden]="item.children === null" class="collapse list-unstyled" [id]="[item.id]">
                 <li  *ngFor="let childItem of item.children">
                     <a [routerLink]="[childItem.path]" routerLinkActive="active">{{childItem.title}}</a>
                 </li>                   
